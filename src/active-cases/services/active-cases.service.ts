@@ -12,6 +12,10 @@ export class ActiveCasesService {
           Accept: 'application/json',
         },
       })
-      .pipe(map((response) => response.data));
+      .pipe(map((response) => this.getCases(response)));
+  }
+
+  private getCases(response) {
+    return response.data.sort((dayA, dayB) => dayA.date - dayB.date);
   }
 }
